@@ -19,7 +19,17 @@ repositories {
 }
 
 dependencies {
+	//web
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	//ORM-Hibernate
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	//DataBase Connection
+	runtimeOnly 'org.postgresql:postgresql'
+
+
+
+	//to do test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
