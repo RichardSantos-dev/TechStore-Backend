@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tech_store_products")
@@ -36,5 +38,18 @@ public class ProductEntity {
 
     @Column(name = "created_date", nullable = false, columnDefinition = "TIMESTAMP")
     private LocalDateTime CreatedDate;
+
+    //relaciones
+    @ManyToOne
+    @JoinColumn(name= "id_category", referencedColumnName = "category_id", insertable = false, updatable = false)
+    private CategoryEntity category;
+
+    @ManyToMany
+    @JoinTable(
+            name = "products_suppliers",
+            joinColumns = @JoinColumn(name = "id_product"),
+            inverseJoinColumns = @JoinColumn(name = "id_supplier")
+    )
+    private Set<SupplierEntity> suppliers = new HashSet<>();
 
 }
