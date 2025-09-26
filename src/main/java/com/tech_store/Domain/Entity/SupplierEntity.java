@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "supplier")
 @Getter
@@ -14,7 +17,7 @@ public class SupplierEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_category", nullable = false, unique = true)
+    @Column(name = "id_supplier", nullable = false, unique = true)
     private Long id;
 
     @Column(nullable = false, unique = true, length = 60)
@@ -23,5 +26,9 @@ public class SupplierEntity {
     @Column(name = "phone_number", nullable = false, length = 20)
     private String phoneNumber;
 
+    //relaciones
+
+    @ManyToMany(mappedBy = "suppliers")
+    private Set<ProductEntity> products = new HashSet<>();
 
 }
